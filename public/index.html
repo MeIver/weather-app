@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>天气查询应用</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .search-box {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .weather-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .temp {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>天气查询</h1>
+    
+    <div class="search-box">
+        <input type="text" id="cityInput" placeholder="输入城市名">
+        <button onclick="getWeather()">查询天气</button>
+    </div>
+    
+    <div id="weatherResult" class="weather-card" style="display: none;">
+        <h2 id="cityName"></h2>
+        <div class="temp" id="temperature"></div>
+        <div id="condition"></div>
+        <div id="humidity"></div>
+    </div>
+    
+    <script>
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            if (!city) return;
+            
+            const response = await fetch(`/api/weather/${city}`);
+            const weather = await response.json();
+            
+            document.getElementById('cityName').textContent = city;
+            document.getElementById('temperature').textContent = `${weather.temp}°C`;
+            document.getElementById('condition').textContent = `天气: ${weather.condition}`;
+            document.getElementById('humidity').textContent = `湿度: ${weather.humidity}%`;
+            
+            document.getElementById('weatherResult').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
