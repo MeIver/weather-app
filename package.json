@@ -7,10 +7,13 @@
     "express": "4.16.4",
     "axios": "0.19.2",
     "dotenv": "8.2.0",
-    "helmet": "3.23.3"
+    "helmet": "3.23.3",
+    "lodash": "4.17.15",
+    "socket.io": "2.3.0"
   },
   "devDependencies": {
-    "nodemon": "1.19.4"
+    "nodemon": "1.19.4",
+    "uglify-js": "2.8.29"
   },
   "scripts": {
     "start": "node app.js",
